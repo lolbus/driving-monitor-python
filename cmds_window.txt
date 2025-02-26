@@ -1,0 +1,21 @@
+# windows
+
+# Run
+myenv\Scripts\activate
+python main.py
+
+
+# Install python env
+py -3.12 -m venv myenv
+venv\Scripts\activate
+pip install -r requirements.txt
+
+
+# mac
+
+source myenv/bin/activate
+python main.py
+
+python3.12 -m venv myenv
+source myenv/bin/activate
+pip install -r requirements.txt

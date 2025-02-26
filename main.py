@@ -35,8 +35,8 @@ def main():
     blinkThresh = 10
     gazeThresh = 5
 
-    #cap = cv2.VideoCapture(0)
-    cap = cv2.VideoCapture('/home/daniel/test-dataset/processed_data/training/001_glasses_sleepyCombination.avi')
+    cap = cv2.VideoCapture(0)
+    # cap = cv2.VideoCapture('/home/daniel/test-dataset/processed_data/training/001_glasses_sleepyCombination.avi')
 
     if (cap.isOpened()== False): 
         print("Error opening video stream or file")

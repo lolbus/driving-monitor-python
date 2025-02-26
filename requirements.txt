@@ -1,6 +1,4 @@
 opencv-python
 mediapipe
-json
-bisect
 onnxruntime
 numpy
