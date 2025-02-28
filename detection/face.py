@@ -66,6 +66,18 @@ class FaceDetector:
         self.arYaw = [0]
         self.arGaze = [0]
         
+        # Initialize attributes returned by evaluate_face
+        self.sleepEyes = False
+        self.mar = 0.0
+        self.gaze = 0.0
+        self.perclos = 0.0
+        self.ear = 0.0
+        self.yawning = 0.0  # Not used yet, but aligns with yawnStatus
+        self.baseR = 0.0
+        self.baseP = 0.0
+        self.baseY = 0.0
+        self.baseG = 0.0
+        
 
     def detect_eyes(self, frame, results, roll, pitch, yaw, display):
 

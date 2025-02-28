@@ -125,6 +125,9 @@ class HeadPose:
         Returns:
             tuple: A tuple containing the roll, pitch, and yaw angles in degrees.
         """
+        if self.rvec is None or self.rvec.size == 0:
+            print("Error: Rotation vector (rvec) is not initialized or invalid.")
+            return 0.0, 0.0, 0.0
                 
         rmat = cv2.Rodrigues(self.rvec)[0]
 
