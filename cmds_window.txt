@@ -24,3 +24,45 @@ source myenv/bin/activate
 python main.py
 
 
+
+
+# ubuntu
+
+# setup git
+sudo apt install -y git
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+ssh-keygen -t ed25519 -C "your.email@example.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+# copy the generate key:
+cat ~/.ssh/id_ed25519.pub
+# Add SSH Key to GitHub
+# Go to GitHub.com > Settings > SSH and GPG keys > New SSH key.
+# Paste the key and save it. and test
+ssh -T git@github.com
+git clone git@github.com:lolbus/driving-monitor-python.git
+cd driving-monitor-python
+
+
+# 1. Install python env
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y software-properties-common build-essential zlib1g-dev libssl-dev libffi-dev libbz2-dev libreadline-dev libsqlite3-dev libncurses5-dev libncursesw5-dev xz-utils tk-dev
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install -y python3.12 python3.12-dev python3.12-venv
+python3.12 --version
+python3.12 -m venv venv
+source venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+
+# check webcam index
+ls /dev/video*
+
+# Run
+source venv/bin/activate
+
+
+
+
