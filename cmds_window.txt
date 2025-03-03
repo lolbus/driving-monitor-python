@@ -50,11 +50,11 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y software-properties-common build-essential zlib1g-dev libssl-dev libffi-dev libbz2-dev libreadline-dev libsqlite3-dev libncurses5-dev libncursesw5-dev xz-utils tk-dev
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
-sudo apt install -y python3.12 python3.12-dev python3.12-venv
+sudo apt install -y python3.12 python3.12-dev python3.12-venv 
 python3.12 --version
 python3.12 -m venv venv
 source venv/bin/activate
-python -m pip install --upgrade pip
+python3.12 -m pip install --upgrade pip
 pip install -r requirements.txt
 
 # check webcam index
@@ -62,6 +62,7 @@ ls /dev/video*
 
 # Run
 source venv/bin/activate
+python main.py
 
 
 
