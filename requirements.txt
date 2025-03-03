@@ -2,3 +2,5 @@ opencv-python
 mediapipe
 onnxruntime
 numpy
+flask
+requests
