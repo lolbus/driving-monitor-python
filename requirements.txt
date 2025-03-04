@@ -4,3 +4,4 @@ onnxruntime
 numpy
 flask
 requests
+pygame

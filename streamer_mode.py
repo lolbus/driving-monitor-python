@@ -15,6 +15,7 @@ import mediapipe as mp
 import time
 from flask import Flask, Response
 import threading
+import pygame  # For cross-platform sound
 
 # Flask app initialization
 app = Flask(__name__)
@@ -23,6 +24,31 @@ app = Flask(__name__)
 frame = None
 frame_lock = threading.Lock()
 
+# Initialize pygame for sound
+pygame.mixer.init()
+
+# Beep sound function
+def beep(seconds=12):
+    """Play an annoying beep sound for the specified duration."""
+    frequency = 100  # Hz (annoying high-pitched beep)
+    duration = seconds * 1000  # Convert to milliseconds
+    sample_rate = 44100
+    bits = 16
+
+    # Generate a square wave beep
+    n_samples = int(sample_rate * (duration / 1000))
+    max_amplitude = 2 ** (bits - 1) - 1
+    buffer = np.zeros(n_samples, dtype=np.int16)  # Use NumPy array with int16 type
+    for i in range(n_samples):
+        t = float(i) / sample_rate
+        value = max_amplitude * 0.5 * (1 if t * frequency % 1 < 0.5 else -1)
+        buffer[i] = int(value)
+    
+    # Convert to bytearray for Pygame
+    sound = pygame.mixer.Sound(buffer)
+    sound.play()
+    #time.sleep(seconds)  # Wait for the sound to finish
+    
 # -----------------------------------------------------------------------------
 # Streaming Function
 # -----------------------------------------------------------------------------
@@ -151,6 +177,8 @@ def main():
         # Alert if the driver is showing signs of drowsiness for more than the threshold
         if drowsy > 0.08:
             print("USER IS SHOWING SIGNALS OF DROWSINESS. SENDING ALERT")
+            beep(seconds=1)  # Play annoying beep for 12 seconds
+            drowsinessCounter = 0
 
         if cv2.waitKey(10) & 0xFF == 27:  # Exit on 'Esc'
             break

@@ -62,7 +62,7 @@ ls /dev/video*
 
 # Run
 source venv/bin/activate
-python main.py
+python streamer_mode.py
 
 
 
