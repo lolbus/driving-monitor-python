@@ -65,5 +65,9 @@ source venv/bin/activate
 python streamer_mode.py
 
 
-
+# systemctl commands
+sudo systemctl daemon-reload
+sudo systemctl start fatigue-detection.service
+sudo systemctl restart fatigue-detection.service
+sudo systemctl status fatigue-detection.service
 

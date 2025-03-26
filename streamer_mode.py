@@ -16,7 +16,7 @@ import time
 from flask import Flask, Response
 import threading
 import pygame  # For cross-platform sound
-
+camera_index = 0
 # Flask app initialization
 app = Flask(__name__)
 
@@ -117,7 +117,7 @@ def main():
     blinkThresh = 10
     gazeThresh = 5
 
-    cap = cv2.VideoCapture(4)  # Adjust camera index as needed
+    cap = cv2.VideoCapture(camera_index)  # Adjust camera index as needed
     # cap.set(cv2.CAP_PROP_FRAME_WIDTH, 320)  # Lower resolution
     # cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
     # cap.set(cv2.CAP_PROP_FPS, 15)  # Lower frame rate
@@ -138,6 +138,13 @@ def main():
 
     startTime = time.time()
     drowsinessCounter = 0
+    
+    # Starting beep
+    beep(0.5)
+    time.sleep(1)
+    beep(0.5)
+    time.sleep(1)
+    beep(3)
 
     while cap.isOpened():
         ret, frame_local = cap.read()
@@ -173,7 +180,8 @@ def main():
 
         # Local display (optional, can comment out if not needed)
         cv2.imshow('Driver State Monitoring', frame_local)
-
+        print(f"drowsy stats {drowsy} threashold is 0.08")	
+        
         # Alert if the driver is showing signs of drowsiness for more than the threshold
         if drowsy > 0.08:
             print("USER IS SHOWING SIGNALS OF DROWSINESS. SENDING ALERT")
