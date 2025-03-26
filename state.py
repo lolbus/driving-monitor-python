@@ -120,7 +120,7 @@ class DriverState:
         return self.headState
         
 
-    def eval_state(self, frame, sleepyeyes, mar, roll, pitch, yaw, gaze, yawning, baseR, baseP, baseG):
+    def eval_state(self, frame, results, sleepyeyes, mar, roll, pitch, yaw, gaze, yawning, baseR, baseP, baseG):
 
         """ Evaluate the overall state of the driver.
 
@@ -144,11 +144,14 @@ class DriverState:
         self.eval_mouth(frame, mar, yawning)
         self.eval_eyes(frame, sleepyeyes)
         self.eval_head(frame, roll, pitch, yaw, gaze, baseR, baseP, baseG)
-
-        if self.headState == "Nodding" or self.eyeState == "Sleepy-eyes" or self.mouthState == "Yawning":
-            self.state = "Drowsy"
+        if not results.multi_face_landmarks:
+            self.state = "Stillness (No face)"
         else:
-            self.state = "Stillness"
+
+            if self.headState == "Nodding" or self.eyeState == "Sleepy-eyes" or self.mouthState == "Yawning":
+                self.state = "Drowsy"
+            else:
+                self.state = "Stillness"
 
         cv2.putText(frame, "STATE: " + str(self.state), (25, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 2)
 

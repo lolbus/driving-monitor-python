@@ -159,7 +159,7 @@ def main():
 
         frame_local, sleepEyes, mar, gaze, yawning, baseR, baseP, baseY, baseG = faceDetector.evaluate_face(frame_local, results, roll, pitch, yaw, True)
 
-        frame_local, state = driverState.eval_state(frame_local, sleepEyes, mar, roll, pitch, yaw, gaze, yawning, baseR, baseP, baseG)
+        frame_local, state = driverState.eval_state(frame_local, results, sleepEyes, mar, roll, pitch, yaw, gaze, yawning, baseR, baseP, baseG)
 
         # Update drowsiness counter if the driver is drowsy
         if state == "Drowsy":
@@ -183,11 +183,10 @@ def main():
         print(f"drowsy stats {drowsy} threashold is 0.08")	
         
         # Alert if the driver is showing signs of drowsiness for more than the threshold
-        if drowsy > 0.08:
+        if drowsy > 0.05:
             print("USER IS SHOWING SIGNALS OF DROWSINESS. SENDING ALERT")
             beep(seconds=1)  # Play annoying beep for 12 seconds
             drowsinessCounter = 0
-
         if cv2.waitKey(10) & 0xFF == 27:  # Exit on 'Esc'
             break
 

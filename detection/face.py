@@ -132,6 +132,9 @@ class FaceDetector:
                 cv2.putText(frame, "GAZE " + str(self.gaze), (500, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
                 cv2.putText(frame, "MAR " + str(self.mar), (500, 175), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
 
+        else:
+            print("No face landmark detected")
+
     def define_normal_position(self):
 
         """ Define the normal head position based on the median values of roll, pitch, and yaw angles.
